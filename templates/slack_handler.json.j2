@@ -1,0 +1,12 @@
+{
+  "handlers": {
+  "slack": {
+    "type": "pipe",
+    "command": "/opt/sensu/embedded/bin/handler-slack.rb"
+    }
+  },
+  "slack": {
+    "webhook_url": "{{ slack_url }}",
+    "channel": "{{ slack_channel }}"
+  }
+}

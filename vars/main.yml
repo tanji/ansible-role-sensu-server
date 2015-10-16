@@ -3,3 +3,7 @@ sensu_host: "admin"
 sensu_user: "sensu"
 sensu_password: "secret"
 
+default_handler: "slack"
+
+slack_url: "https://hooks.slack.com/services/"
+slack_channel: "#rdba-notifications"
