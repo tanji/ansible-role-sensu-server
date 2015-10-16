@@ -1,31 +1,28 @@
 {
   "checks": {
     "mysql-available": {
-      "command": "check-mysql-alive.rb --ini /etc/sensu/my.ini --database information_schema",
+      "command": "/opt/sensu/embedded/bin/check-mysql-alive.rb --ini /etc/sensu/my.ini --database information_schema",
       "interval": 10,
       "subscribers": [
         "databases"
       ]
-    }
-    {
+    },
     "mysql-connections": {
-      "command": "check-mysql-connections.rb --ini /etc/sensu/my.ini -a 80%",
+      "command": "/opt/sensu/embedded/bin/check-mysql-connections.rb --ini /etc/sensu/my.ini -a 80%",
       "interval": 10,
       "subscribers": [
         "databases"
       ]
-    }
-    {
+    },
     "mysql-replication": {
-      "command": "check-mysql-replication-status.rb --ini /etc/sensu/my.ini -h localhost",
+      "command": "/opt/sensu/embedded/bin/check-mysql-replication-status.rb --ini /etc/sensu/my.ini -h localhost",
       "interval": 10,
       "subscribers": [
         "databases"
       ]
-    }
-    {
+    },
     "mysql-threads": {
-      "command": "/etc/sensu/plugins/check-mysql-threads.rb --ini /etc/sensu/my.ini",
+      "command": "/opt/sensu/embedded/bin/ruby /etc/sensu/plugins/check-mysql-threads.rb --ini /etc/sensu/my.ini -c 64 -w 128",
       "interval": 10,
       "subscribers": [
         "databases"
