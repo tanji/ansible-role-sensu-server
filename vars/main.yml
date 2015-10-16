@@ -1,0 +1,5 @@
+# default variables
+sensu_host: "admin"
+sensu_user: "sensu"
+sensu_password: "secret"
+
