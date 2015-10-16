@@ -1,22 +1,11 @@
-- name: Install Erlang repo
-  yum: name=http://packages.erlang-solutions.com/erlang-solutions-1.0-1.noarch.rpm state=present
-- name: Install Erlang
-  yum: name=erlang state=present
-- name: Import RabbitMQ signing key
-  rpm_key: state=present key=https://www.rabbitmq.com/rabbitmq-signing-key-public.asc
-- name: Install RabbitMQ
-  yum: name=https://www.rabbitmq.com/releases/rabbitmq-server/v3.5.4/rabbitmq-server-3.5.4-1.noarch.rpm state=present
-- name: Install EPEL repo
-  yum: name=http://dl.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm state=present
-- name: Install Redis
-  yum: name=redis state=present
-- name: Start RabbitMQ
-  service: name=rabbitmq-server state=started
-- name: Create RabbitMQ vhost
-  rabbitmq_vhost: name=/sensu state=present
-- name: Create RabbitMQ user
-  rabbitmq_user: user={{ sensu_user }} password={{ sensu_password }} vhost=/sensu configure_priv=.* read_priv=.* write_priv=.* state=present
+# file: main.yml
+
+- include: rabbitmq.yml
+
+- include: redis.yml
+
 - include: sensu.yml
+
 - name: Configure sensu server
   template: src=config-server.json.j2 dest=/etc/sensu/config.json
 - name: Add checks
