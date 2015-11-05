@@ -10,6 +10,10 @@
   template: src=config-server.json.j2 dest=/etc/sensu/config.json
 - name: Add checks
   copy: src=check-mysql.json dest=/etc/sensu/conf.d/
+- name: Add default handler
+  template: src=default_handler.json.j2 dest=/etc/sensu/conf.d/default_handler.json
+- name: Add slack handler
+  template: src=slack_handler.json.j2 dest=/etc/sensu/conf.d/slack_handler.json
 - name: Start sensu-server
   service: name=sensu-server state=started
 - name: Start sensu-api
